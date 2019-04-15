@@ -8185,6 +8185,11 @@ vue-loader@^15.7.0:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-notifyjs@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/vue-notifyjs/-/vue-notifyjs-0.4.3.tgz#4fd099d49753ccbbfd807e80ed7e0e2739176621"
+  integrity sha512-noZGki6q5B7YPmruA8+GYjSJC4WWXfmZxIpeWbfYYPYJ9ZBr+ggcswbIRFIuINlZYsOFaflb4Hpzd8bBZdHY7g==
+
 vue-style-loader@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
@@ -8205,6 +8210,11 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+
+vue-toasted@^1.1.26:
+  version "1.1.26"
+  resolved "https://registry.yarnpkg.com/vue-toasted/-/vue-toasted-1.1.26.tgz#1333d1a42157ab78389c3810023a49ba94e69c7b"
+  integrity sha512-Z4/gfPcqdzsRvif7UITrZOkh3C6jm0yQKJyr9kX31IGWXor5dNipE1Sc5SnlL5RLmY7vlLa+SqIjc9Gbpy7V0g==
 
 vue2-google-maps@^0.10.6:
   version "0.10.6"

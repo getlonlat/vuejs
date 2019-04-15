@@ -41,7 +41,7 @@ const actions = {
   setZoom({ commit }, zoom) {
     commit("SET_ZOOM", zoom);
   },
-  setLatLng: function ({ commit }, latLng) {
+  setLatLng({ commit }, latLng) {
     commit("SET_LATLNG", latLng);
 
     const params = {

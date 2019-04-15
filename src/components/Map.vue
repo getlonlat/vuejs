@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
   <div>
     <div class="card">
       <header class="card-header">
@@ -53,6 +53,7 @@
                   <button
                     class="button is-light"
                     v-clipboard="() => markerPosition.lat"
+                    v-clipboard:success="clipboardSuccessHandler"
                   >
                     <span class="icon">
                       <i class="far fa-copy"></i>
@@ -83,6 +84,7 @@
                   <button
                     class="button is-light"
                     v-clipboard="() => markerPosition.lng"
+                    v-clipboard:success="clipboardSuccessHandler"
                   >
                     <span class="icon">
                       <i class="far fa-copy"></i>
@@ -106,7 +108,11 @@
                   />
                 </div>
                 <div class="control">
-                  <button class="button is-light" v-clipboard="() => hash">
+                  <button
+                    class="button is-light"
+                    v-clipboard="() => hash"
+                    v-clipboard:success="clipboardSuccessHandler"
+                  >
                     <span class="icon">
                       <i class="far fa-copy"></i>
                     </span>
@@ -125,7 +131,11 @@
             <input type="text" class="input is-fullwidth" v-model="address" />
           </div>
           <div class="control">
-            <button class="button is-light" v-clipboard="() => address">
+            <button
+              class="button is-light"
+              v-clipboard="() => address"
+              v-clipboard:success="clipboardSuccessHandler"
+            >
               <span class="icon">
                 <i class="far fa-copy"></i>
               </span>
@@ -195,6 +205,9 @@ export default {
     dragEnd(evt) {
       const latLng = { lat: evt.latLng.lat(), lng: evt.latLng.lng() };
       this.$store.dispatch("setLatLng", latLng);
+    },
+    clipboardSuccessHandler() {
+      this.$toasted.show("Copied to clipboard.");
     }
   },
   mounted() {
