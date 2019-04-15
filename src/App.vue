@@ -3,13 +3,9 @@
     <section class="section">
       <div class="container">
         <app-header></app-header>
-        <div class="columns">
-          <div class="column">
-            <app-map></app-map>
-          </div>
-          <div class="column is-one-third" :class="{'is-hidden': !showSearchAddress}">
-            <app-search-address></app-search-address>
-          </div>
+        <app-map></app-map>
+        <div :class="{ 'is-hidden': !showSearchAddress }">
+          <app-search-address></app-search-address>
         </div>
       </div>
     </section>

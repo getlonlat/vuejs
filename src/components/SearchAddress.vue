@@ -2,19 +2,18 @@
   <div>
     <div>
       <nav class="panel">
-        <p class="panel-heading">Search for places</p>
         <div class="panel-block">
           <p class="control has-icons-left">
             <label>
               <input
-                class="input is-small"
+                class="input"
                 type="search"
                 placeholder="Start type the address"
                 v-model="query"
                 @keyup="searchAddress"
               />
             </label>
-            <span class="icon is-small is-left">
+            <span class="icon is-left">
               <i class="fas fa-search" aria-hidden="true"></i>
             </span>
           </p>
