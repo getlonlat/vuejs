@@ -5,6 +5,13 @@
 yarn install
 ```
 
+## Env setup
+Create a .env and add a Google Maps api key with Maps API
+and Geocoding API permissions.
+```
+cp .env.example .env.local
+```
+
 ### Compiles and hot-reloads for development
 ```
 yarn run serve
@@ -15,15 +22,14 @@ yarn run serve
 yarn run build
 ```
 
-### Run your tests
-```
-yarn run test
-```
 
-### Lints and fixes files
-```
-yarn run lint
-```
+### Powered by
+[Vue.js](https://vuejs.org/)
+
+[Bulma](https://bulma.io/)
+
+[Google Maps API](https://cloud.google.com/maps-platform/)
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
