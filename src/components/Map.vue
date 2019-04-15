@@ -27,7 +27,6 @@
             :clickable="true"
             :draggable="true"
             @dragend="dragEnd"
-            @click="clickMarker"
           />
         </gmap-map>
       </div>
@@ -40,7 +39,7 @@
                 <div class="control">
                   <a class="button is-static">Y</a>
                 </div>
-                <div class="control">
+                <div class="control is-expanded">
                   <label>
                     <input
                       type="text"
@@ -70,7 +69,7 @@
                 <div class="control">
                   <a class="button is-static">X</a>
                 </div>
-                <div class="control">
+                <div class="control is-expanded">
                   <label>
                     <input
                       type="text"
@@ -97,7 +96,7 @@
             <label for="hash" class="label">Geohash</label>
             <div class="control">
               <div class="field has-addons">
-                <div class="control">
+                <div class="control is-expanded">
                   <input
                     id="hash"
                     type="text"
@@ -117,6 +116,22 @@
             </div>
           </div>
         </div>
+
+        <div class="field has-addons" v-if="address">
+          <div class="control">
+            <a class="button is-static">Address</a>
+          </div>
+          <div class="control is-expanded">
+            <input type="text" class="input is-fullwidth" v-model="address" />
+          </div>
+          <div class="control">
+            <button class="button is-light" v-clipboard="() => address">
+              <span class="icon">
+                <i class="far fa-copy"></i>
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -134,6 +149,9 @@ export default {
   computed: {
     zoom() {
       return this.$store.getters.zoom;
+    },
+    address() {
+      return this.$store.getters.address;
     },
     mapCenter() {
       return this.$store.getters.latLng;
