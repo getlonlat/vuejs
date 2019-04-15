@@ -177,12 +177,6 @@ export default {
     dragEnd(evt) {
       const latLng = { lat: evt.latLng.lat(), lng: evt.latLng.lng() };
       this.$store.dispatch("setLatLng", latLng);
-    },
-    clickMarker() {
-      //  TODO: Center map when click marker
-    },
-    copy(value) {
-      console.log("copied ", value);
     }
   },
   mounted() {
