@@ -1,4 +1,4 @@
-# getlonlat-vue
+# getLonLat vue.js
 
 ## Project setup
 ```
