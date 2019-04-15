@@ -50,6 +50,16 @@
                     />
                   </label>
                 </div>
+                <div class="control">
+                  <button
+                    class="button is-light"
+                    v-clipboard="() => markerPosition.lat"
+                  >
+                    <span class="icon">
+                      <i class="far fa-copy"></i>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -70,13 +80,23 @@
                     />
                   </label>
                 </div>
+                <div class="control">
+                  <button
+                    class="button is-light"
+                    v-clipboard="() => markerPosition.lng"
+                  >
+                    <span class="icon">
+                      <i class="far fa-copy"></i>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
           <div class="column">
             <label for="hash" class="label">Geohash</label>
             <div class="control">
-              <div class="field">
+              <div class="field has-addons">
                 <div class="control">
                   <input
                     id="hash"
@@ -85,6 +105,13 @@
                     placeholder="Geohash"
                     :value="hash"
                   />
+                </div>
+                <div class="control">
+                  <button class="button is-light" v-clipboard="() => hash">
+                    <span class="icon">
+                      <i class="far fa-copy"></i>
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -153,6 +180,9 @@ export default {
     },
     clickMarker() {
       //  TODO: Center map when click marker
+    },
+    copy(value) {
+      console.log("copied ", value);
     }
   },
   mounted() {
