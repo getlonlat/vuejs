@@ -14,6 +14,12 @@
           </span>
           <span>DROP MARKER</span>
         </a>
+        <a class="card-footer-item" @click="toggleSearchAddress">
+          <span class="icon">
+            <i class="fas fa-search"></i>
+          </span>
+          <span>SEARCH ADDRESS</span>
+        </a>
       </header>
       <div class="card-image">
         <gmap-map
@@ -205,6 +211,9 @@ export default {
     dragEnd(evt) {
       const latLng = { lat: evt.latLng.lat(), lng: evt.latLng.lng() };
       this.$store.dispatch("setLatLng", latLng);
+    },
+    toggleSearchAddress() {
+      this.$store.dispatch("toggleSearchAddress");
     },
     clipboardSuccessHandler() {
       this.$toasted.show("Copied to clipboard.");

@@ -10,7 +10,8 @@ const state = {
   latLng: {
     lat: -8,
     lng: -55
-  }
+  },
+  showSearchAddress: false
 };
 
 const getters = {
@@ -22,6 +23,9 @@ const getters = {
   },
   latLng: state => {
     return state.latLng;
+  },
+  showSearchAddress: state => {
+    return state.showSearchAddress;
   }
 };
 
@@ -34,6 +38,9 @@ const mutations = {
   },
   SET_LATLNG(state, latLng) {
     state.latLng = latLng;
+  },
+  TOGGLE_SEARCH_ADDRESS() {
+    state.showSearchAddress = !state.showSearchAddress;
   }
 };
 
@@ -57,6 +64,9 @@ const actions = {
           commit("SET_ADDRESS", address);
         }
       });
+  },
+  toggleSearchAddress({ commit }) {
+    commit("TOGGLE_SEARCH_ADDRESS");
   }
 };
 
