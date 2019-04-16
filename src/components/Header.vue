@@ -14,13 +14,27 @@
           />
           <span class="is-size-4">getLonLat</span>
         </a>
+
+        <a
+          role="button"
+          class="navbar-burger burger"
+          :class="{'is-active' : toggleMenu}"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarMenu"
+          @click="toggleMenu = !toggleMenu"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
 
-      <div class="navbar-end">
-        <div class="navbar-item">
+      <div id="navbarMenu" class="navbar-menu" :class="{'is-active' : toggleMenu}">
+        <div class="navbar-end">
           <a
-            href="https://github.com/getlonlat/app-vue"
-            class="button is-light"
+            class="navbar-item"
+            href="https://github.com/getlonlat/vuejs"
             target="_blank"
           >
             about
@@ -30,3 +44,13 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      toggleMenu: false
+    };
+  }
+}
+</script>

@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <section class="section">
-      <div class="container">
-        <app-header></app-header>
-        <app-map></app-map>
-        <div :class="{ 'is-hidden': !showSearchAddress }">
-          <app-search-address></app-search-address>
-        </div>
-      </div>
-    </section>
+  <div class="container">
+    <app-header></app-header>
+    <app-map></app-map>
+    <div :class="{ 'is-hidden': !showSearchAddress }">
+      <app-search-address></app-search-address>
+    </div>
   </div>
 </template>
 

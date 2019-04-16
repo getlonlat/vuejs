@@ -3,9 +3,9 @@
     <div class="card-image">
       <gmap-map
         ref="gmap"
+        class="map"
         :center="mapCenter"
         :zoom="zoom"
-        style="width: 100%; height: 520px"
       >
         <gmap-marker
           :position="markerPosition"
@@ -15,6 +15,7 @@
         />
       </gmap-map>
     </div>
+
     <div class="card-content">
       <div class="columns">
         <div class="column">
@@ -127,24 +128,25 @@
         </div>
       </div>
     </div>
+
     <footer class="card-footer">
       <a class="card-footer-item" @click="toggleSearchAddress">
         <span class="icon">
           <i class="fas fa-search"></i>
         </span>
-        <span>SEARCH ADDRESS</span>
+        <span class="is-hidden-mobile">SEARCH ADDRESS</span>
       </a>
       <a class="card-footer-item" @click="updatePosition">
         <span class="icon">
           <i class="far fa-compass"></i>
         </span>
-        <span>USE GEOLOCATION</span>
+        <span>GEOLOCATION</span>
       </a>
       <a class="card-footer-item" @click="dropMarker">
         <span class="icon">
           <i class="fas fa-map-marker-alt"></i>
         </span>
-        <span>DROP MARKER</span>
+        <span class="is-hidden-mobile">DROP MARKER</span>
       </a>
     </footer>
   </div>
@@ -224,3 +226,15 @@ export default {
   }
 };
 </script>
+
+<style>
+.map {
+  width: 100%;
+  height: 520px;
+}
+@media (max-width: 600px) {
+  .map {
+    height: 250px;
+  }
+}
+</style>
