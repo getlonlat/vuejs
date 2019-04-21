@@ -5,7 +5,14 @@
     </p>
     <div class="panel-block">
       <p class="control has-icons-left">
-        <input class="input is-small" type="search" placeholder="filter" />
+        <label>
+          <input
+            class="input is-small"
+            type="search"
+            placeholder="filter"
+            v-model="query"
+          />
+        </label>
         <span class="icon is-small is-left">
           <i class="fas fa-search" aria-hidden="true"></i>
         </span>
@@ -42,9 +49,20 @@
 
 <script>
 export default {
+  data() {
+    return {
+      query: ""
+    };
+  },
   computed: {
     addressHistory() {
-      return this.$store.getters.addressHistory;
+      return this.$store.getters.addressHistory.filter(item => {
+        return (
+          item.formatted_address
+            .toLowerCase()
+            .indexOf(this.query.toLowerCase()) > -1
+        );
+      });
     }
   },
   methods: {
