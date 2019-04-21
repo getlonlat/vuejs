@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import Clipboard from "v-clipboard";
 import Toasted from "vue-toasted";
+import VueSweetalert2 from "vue-sweetalert2";
 
 import { store } from "./store";
 
@@ -15,6 +16,7 @@ Vue.use(Toasted, {
   duration: 3000,
   singleton: true
 });
+Vue.use(VueSweetalert2);
 Vue.use(VueGoogleMaps, {
   load: {
     key: process.env.VUE_APP_MAPS_API_KEY
@@ -23,5 +25,10 @@ Vue.use(VueGoogleMaps, {
 
 new Vue({
   store,
-  render: h => h(App)
+  render: h => h(App),
+  filters: {
+    json: value => {
+      return JSON.stringify(value, null, 2);
+    }
+  }
 }).$mount("#app");

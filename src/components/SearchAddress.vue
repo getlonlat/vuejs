@@ -88,6 +88,7 @@ export default {
       };
       this.$store.dispatch("setZoom", 15);
       this.$store.dispatch("setLatLng", latLng);
+      this.$store.dispatch("addToHistory", address);
     },
     clearSearch() {
       this.query = "";

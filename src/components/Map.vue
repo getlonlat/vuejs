@@ -1,12 +1,7 @@
 <template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
   <div class="card">
     <div class="card-image">
-      <gmap-map
-        ref="gmap"
-        class="map"
-        :center="mapCenter"
-        :zoom="zoom"
-      >
+      <gmap-map ref="gmap" class="map" :center="mapCenter" :zoom="zoom">
         <gmap-marker
           :position="markerPosition"
           :clickable="true"
