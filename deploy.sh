@@ -10,11 +10,12 @@ yarn build
 cd dist
 
 # if you are deploying to a custom domain
-echo 'getlonlat.top' > CNAME
+echo 'vuejs.getlonlat.top' > CNAME
 
 git init
 git add -A
 git commit -m 'deploy'
+
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 git push -f git@github.com:getlonlat/vuejs.git master:gh-pages
