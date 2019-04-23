@@ -15,7 +15,8 @@ const state = {
   address: null,
   latLng: { lat: -8, lng: -55 },
   addresses: [],
-  showSearchAddress: false
+  showSearchAddress: false,
+  showNotification: true
 };
 
 const getters = {
@@ -33,6 +34,9 @@ const getters = {
   },
   addressHistory: state => {
     return state.addresses;
+  },
+  showNotification: state => {
+    return state.showNotification;
   }
 };
 
@@ -59,6 +63,9 @@ const mutations = {
   },
   CLEAR_SEARCH_HISTORY(state) {
     state.addresses = [];
+  },
+  HIDE_NOTIFICATION(state) {
+    state.showNotification = false;
   }
 };
 
@@ -94,6 +101,9 @@ const actions = {
   },
   clearHistory({ commit }) {
     commit("CLEAR_SEARCH_HISTORY");
+  },
+  hideNotification({ commit }) {
+    commit("HIDE_NOTIFICATION");
   }
 };
 
