@@ -11,29 +11,29 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "bulma": "^0.7.4",
-    "core-js": "^2.6.5",
+    "axios": "^0.18.1",
+    "bulma": "^0.7.5",
+    "core-js": "^2.6.11",
     "dotenv": "^7.0.0",
     "ngeohash": "^0.6.3",
     "v-clipboard": "^2.2.2",
-    "vue": "^2.6.10",
+    "vue": "^2.6.11",
     "vue-sweetalert2": "^1.6.4",
-    "vue-toasted": "^1.1.26",
-    "vue2-google-maps": "^0.10.6",
-    "vuex": "^3.0.1",
-    "vuex-persist": "^2.0.0"
+    "vue-toasted": "^1.1.28",
+    "vue2-google-maps": "^0.10.7",
+    "vuex": "^3.3.0",
+    "vuex-persist": "^2.2.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.6.0",
-    "@vue/cli-plugin-eslint": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-plugin-eslint": "^3.12.1",
+    "@vue/cli-service": "^4.3.1",
     "@vue/eslint-config-prettier": "^4.0.1",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
+    "eslint-plugin-vue": "^5.2.3",
+    "node-sass": "^4.14.0",
+    "sass-loader": "^7.3.1",
+    "vue-template-compiler": "^2.6.11"
   }
 }
