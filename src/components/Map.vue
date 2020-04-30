@@ -183,10 +183,6 @@ export default {
           };
           this.$store.dispatch("setLatLng", latLng);
           this.$store.dispatch("setZoom", 15);
-        },
-        error => {
-          console.error(error);
-          // TODO: handle geolocation errors
         }
       );
     },

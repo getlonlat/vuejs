@@ -4,13 +4,13 @@
 set -e
 
 # build
-yarn build --mode production
+npm run build
 
 # navigate into the build output directory
 cd dist
 
 # if you are deploying to a custom domain
-echo 'vuejs.getlonlat.top' > CNAME
+#echo 'vuejs.getlonlat.top' > CNAME
 
 git init
 git add -A
