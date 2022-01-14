@@ -11,7 +11,7 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bulma": "^0.7.5",
     "core-js": "^2.6.11",
     "dotenv": "^7.0.0",
