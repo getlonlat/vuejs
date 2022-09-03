@@ -13,12 +13,12 @@ export default {
   computed: {
     showNotification() {
       return this.$store.getters.showNotification;
-    }
+    },
   },
   methods: {
     hideNotification() {
       this.$store.dispatch("hideNotification");
-    }
-  }
+    },
+  },
 };
 </script>

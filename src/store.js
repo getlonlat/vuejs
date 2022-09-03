@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 const vuexPersist = new VuexPersist({
   key: "getlonlat-vue",
-  storage: localStorage
+  storage: localStorage,
 });
 
 const state = {
@@ -16,28 +16,28 @@ const state = {
   latLng: { lat: -8, lng: -55 },
   addresses: [],
   showSearchAddress: false,
-  showNotification: true
+  showNotification: true,
 };
 
 const getters = {
-  zoom: state => {
+  zoom: (state) => {
     return state.zoom;
   },
-  address: state => {
+  address: (state) => {
     return state.address;
   },
-  latLng: state => {
+  latLng: (state) => {
     return state.latLng;
   },
-  showSearchAddress: state => {
+  showSearchAddress: (state) => {
     return state.showSearchAddress;
   },
-  addressHistory: state => {
+  addressHistory: (state) => {
     return state.addresses;
   },
-  showNotification: state => {
+  showNotification: (state) => {
     return state.showNotification;
-  }
+  },
 };
 
 const mutations = {
@@ -57,7 +57,7 @@ const mutations = {
     state.addresses.push(result);
   },
   DELETE_FROM_HISTORY(state, address) {
-    state.addresses = state.addresses.filter(addrezz => {
+    state.addresses = state.addresses.filter((addrezz) => {
       return addrezz.place_id != address.place_id;
     });
   },
@@ -66,7 +66,7 @@ const mutations = {
   },
   HIDE_NOTIFICATION(state) {
     state.showNotification = false;
-  }
+  },
 };
 
 const actions = {
@@ -79,11 +79,11 @@ const actions = {
     const params = {
       key: process.env.VUE_APP_MAPS_API_KEY,
       latlng: `${latLng.lat},${latLng.lng}`,
-      sensor: false
+      sensor: false,
     };
     axios
       .get("https://maps.googleapis.com/maps/api/geocode/json", { params })
-      .then(result => {
+      .then((result) => {
         if (result.data.results[0]) {
           const address = result.data.results[0].formatted_address;
           commit("SET_ADDRESS", address);
@@ -104,7 +104,7 @@ const actions = {
   },
   hideNotification({ commit }) {
     commit("HIDE_NOTIFICATION");
-  }
+  },
 };
 
 export const store = new Vuex.Store({
@@ -112,5 +112,5 @@ export const store = new Vuex.Store({
   getters,
   mutations,
   actions,
-  plugins: [vuexPersist.plugin]
+  plugins: [vuexPersist.plugin],
 });

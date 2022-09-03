@@ -1,75 +1,69 @@
 <template>
-  <nav class="panel">
-    <p class="panel-heading">
-      history
-    </p>
-    <div class="panel-block">
-      <p class="control has-icons-left">
-        <label>
-          <input
-            class="input is-small"
-            type="search"
-            placeholder="filter"
-            v-model="query"
-          />
-        </label>
-        <span class="icon is-small is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </span>
-      </p>
+  <div v-if="addressHistory.length > 0">
+    <div class="input-group mb-1">
+      <div class="input-group-text">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </div>
+      <input
+        class="form-control"
+        type="search"
+        placeholder="Filter search history"
+        v-model="query"
+      />
     </div>
-    <a
-      class="panel-block"
-      v-for="address in addressHistory"
-      :key="address.place_id"
-      @click="selectAddress(address)"
-    >
-      <span class="panel-icon" @click="deleteAddress(address)">
-        <i class="delete" aria-hidden="true"></i>
-      </span>
-      <span>
-        {{ address.formatted_address }}
-      </span>
-    </a>
-    <div class="panel-block" v-if="addressHistory.length == 0">
-      <small>
-        Select some address to show here.
-      </small>
-    </div>
-    <div class="panel-block" v-if="addressHistory.length > 0">
-      <button
-        class="button is-link is-outlined is-fullwidth is-small"
-        @click="clearHistory"
+    <nav class="list-group mb-3">
+      <div
+        class="list-group-item"
+        v-for="address in addressHistory"
+        :key="address.place_id"
       >
-        reset all filters
-      </button>
-    </div>
-  </nav>
+        <span
+          class="text-danger"
+          @click="deleteAddress(address)"
+          title="Click to exclude address from history"
+        >
+          <i class="fas fa-trash-alt"></i>
+        </span>
+        <span @click="selectAddress(address)">
+          {{ address.formatted_address }}
+        </span>
+      </div>
+
+      <div class="list-group-item" v-if="addressHistory.length == 0">
+        <small> Select some address to show here. </small>
+      </div>
+      <div class="list-group-item" v-if="addressHistory.length > 0">
+        <button class="btn btn-sm btn-outline-danger" @click="clearHistory">
+          Clear history
+        </button>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      query: ""
+      query: "",
     };
   },
   computed: {
     addressHistory() {
-      return this.$store.getters.addressHistory.filter(item => {
+      return this.$store.getters.addressHistory.filter((item) => {
         return (
           item.formatted_address
             .toLowerCase()
             .indexOf(this.query.toLowerCase()) > -1
         );
       });
-    }
+    },
   },
   methods: {
     selectAddress(address) {
       const latLng = {
         lat: address.geometry.location.lat,
-        lng: address.geometry.location.lng
+        lng: address.geometry.location.lng,
       };
       this.$store.dispatch("setLatLng", latLng);
     },
@@ -79,8 +73,8 @@ export default {
         text: address.formatted_address,
         showCancelButton: true,
         confirmButtonText: "Yes",
-        cancelButtonText: "Cancel"
-      }).then(result => {
+        cancelButtonText: "Cancel",
+      }).then((result) => {
         if (result.value) {
           this.$store.dispatch("deleteFromHistory", address);
         }
@@ -88,7 +82,7 @@ export default {
     },
     clearHistory() {
       this.$store.dispatch("clearHistory");
-    }
-  }
+    },
+  },
 };
 </script>

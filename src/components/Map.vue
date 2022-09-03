@@ -1,159 +1,148 @@
 <template xmlns:v-clipboard="http://www.w3.org/1999/xhtml">
-  <div class="card">
-    <div class="card-image">
-      <gmap-map ref="gmap" class="map" :center="mapCenter" :zoom="zoom">
-        <gmap-marker
-          :position="markerPosition"
-          :clickable="true"
-          :draggable="true"
-          @dragend="dragEnd"
-        />
-      </gmap-map>
-    </div>
-
-    <div class="card-content">
-      <div class="columns">
-        <div class="column">
-          <div class="control">
-            <label class="label">Latitude</label>
-            <div class="field has-addons">
-              <div class="control">
-                <a class="button is-static">Y</a>
-              </div>
-              <div class="control is-expanded">
-                <label>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="">Longitude</label>
+                <div class="input-group">
+                  <label class="input-group-text">X</label>
                   <input
                     type="text"
-                    class="input"
-                    placeholder="Latitude"
-                    :value="markerPosition.lat"
-                  />
-                </label>
-              </div>
-              <div class="control">
-                <button
-                  class="button is-light"
-                  v-clipboard="() => markerPosition.lat"
-                  v-clipboard:success="clipboardSuccessHandler"
-                >
-                  <span class="icon">
-                    <i class="far fa-copy"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <label class="label">Longitude</label>
-          <div class="control">
-            <div class="field has-addons">
-              <div class="control">
-                <a class="button is-static">X</a>
-              </div>
-              <div class="control is-expanded">
-                <label>
-                  <input
-                    type="text"
-                    class="input"
+                    class="form-control"
                     placeholder="Longitude"
                     :value="markerPosition.lng"
                   />
-                </label>
+                  <button
+                    class="btn btn-outline-secondary"
+                    v-clipboard="() => markerPosition.lng"
+                    v-clipboard:success="clipboardSuccessHandler"
+                  >
+                    <span class="icon">
+                      <i class="far fa-copy"></i>
+                    </span>
+                  </button>
+                </div>
               </div>
-              <div class="control">
-                <button
-                  class="button is-light"
-                  v-clipboard="() => markerPosition.lng"
-                  v-clipboard:success="clipboardSuccessHandler"
-                >
-                  <span class="icon">
-                    <i class="far fa-copy"></i>
-                  </span>
-                </button>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="">Latitude</label>
+                <div class="input-group">
+                  <span class="input-group-text">Y</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Latitude"
+                    :value="markerPosition.lat"
+                  />
+                  <button
+                    class="btn btn-outline-secondary"
+                    v-clipboard="() => markerPosition.lat"
+                    v-clipboard:success="clipboardSuccessHandler"
+                    title="Click to copy"
+                  >
+                    <span class="icon">
+                      <i class="far fa-copy"></i>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="column">
-          <label for="hash" class="label">Geohash</label>
-          <div class="control">
-            <div class="field has-addons">
-              <div class="control is-expanded">
-                <input
-                  id="hash"
-                  type="text"
-                  class="input is-fullwidth"
-                  placeholder="Geohash"
-                  :value="hash"
-                />
-              </div>
-              <div class="control">
-                <button
-                  class="button is-light"
-                  v-clipboard="() => hash"
-                  v-clipboard:success="clipboardSuccessHandler"
-                >
-                  <span class="icon">
-                    <i class="far fa-copy"></i>
-                  </span>
-                </button>
-              </div>
+          <div class="mb-3">
+            <div class="input-group">
+              <label for="hash" class="input-group-text">Geohash</label>
+              <input
+                id="hash"
+                type="text"
+                class="form-control"
+                placeholder="Geohash"
+                :value="hash"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                v-clipboard="() => hash"
+                v-clipboard:success="clipboardSuccessHandler"
+              >
+                <span class="icon">
+                  <i class="far fa-copy"></i>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="mb-3" v-if="address">
+            <label for="address" class="">Address</label>
+            <div class="input-group">
+              <textarea rows="2" class="form-control" v-model="address" />
+              <button
+                class="btn btn-outline-secondary"
+                v-clipboard="() => address"
+                v-clipboard:success="clipboardSuccessHandler"
+              >
+                <span class="icon">
+                  <i class="far fa-copy"></i>
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="field has-addons" v-if="address">
-        <div class="control">
-          <a class="button is-static">Address</a>
+      <app-history></app-history>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="row">
+          <div class="col-lg-8">
+            <app-search-address></app-search-address>
+          </div>
+          <div class="col-lg-4">
+            <div class="card-body">
+              <div class="btn-group" role="group" aria-label="Toolbar">
+                <button
+                  class="btn btn-sm btn-outline-primary"
+                  @click="updatePosition"
+                >
+                  USE GEOLOCATION
+                </button>
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  @click="dropMarker"
+                >
+                  DROP MARKER
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="control is-expanded">
-          <input type="text" class="input is-fullwidth" v-model="address" />
-        </div>
-        <div class="control">
-          <button
-            class="button is-light"
-            v-clipboard="() => address"
-            v-clipboard:success="clipboardSuccessHandler"
-          >
-            <span class="icon">
-              <i class="far fa-copy"></i>
-            </span>
-          </button>
+        <div class="card-image">
+          <gmap-map ref="gmap" class="map" :center="mapCenter" :zoom="zoom">
+            <gmap-marker
+              :position="markerPosition"
+              :clickable="true"
+              :draggable="true"
+              @dragend="dragEnd"
+            />
+          </gmap-map>
         </div>
       </div>
     </div>
-
-    <footer class="card-footer">
-      <a class="card-footer-item" @click="toggleSearchAddress">
-        <span class="icon">
-          <i class="fas fa-search"></i>
-        </span>
-        <span class="is-hidden-mobile">SEARCH ADDRESS</span>
-      </a>
-      <a class="card-footer-item" @click="updatePosition">
-        <span class="icon">
-          <i class="far fa-compass"></i>
-        </span>
-        <span>GEOLOCATION</span>
-      </a>
-      <a class="card-footer-item" @click="dropMarker">
-        <span class="icon">
-          <i class="fas fa-map-marker-alt"></i>
-        </span>
-        <span class="is-hidden-mobile">DROP MARKER</span>
-      </a>
-    </footer>
   </div>
 </template>
 
 <script>
+import SearchAddress from "./SearchAddress.vue";
+import History from "./History.vue";
+
 var geohash = require("ngeohash");
 
 export default {
   data() {
     return {
-      map: null
+      map: null,
     };
   },
   computed: {
@@ -171,20 +160,18 @@ export default {
     },
     hash() {
       return geohash.encode(this.markerPosition.lat, this.markerPosition.lng);
-    }
+    },
   },
   methods: {
     updatePosition() {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const latLng = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          this.$store.dispatch("setLatLng", latLng);
-          this.$store.dispatch("setZoom", 15);
-        }
-      );
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latLng = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        this.$store.dispatch("setLatLng", latLng);
+        this.$store.dispatch("setZoom", 15);
+      });
     },
     dropMarker() {
       if (!this.map) {
@@ -194,7 +181,7 @@ export default {
       const center = this.map.getCenter();
       const latLng = {
         lat: center.lat(),
-        lng: center.lng()
+        lng: center.lng(),
       };
       this.$store.dispatch("setLatLng", latLng);
     },
@@ -207,22 +194,27 @@ export default {
     },
     clipboardSuccessHandler() {
       this.$toasted.show("Copied to clipboard.");
-    }
+    },
   },
   mounted() {
     var self = this;
     self.$refs.gmap.$mapPromise.then(() => {
       self.map = self.$refs.gmap.$mapObject;
     });
-  }
+  },
+  components: {
+    appSearchAddress: SearchAddress,
+    appHistory: History,
+  },
 };
 </script>
 
 <style>
 .map {
   width: 100%;
-  height: 420px;
+  height: 520px;
 }
+
 @media (max-width: 600px) {
   .map {
     height: 250px;
