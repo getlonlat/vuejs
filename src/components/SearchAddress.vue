@@ -64,8 +64,6 @@ export default {
         key: process.env.VUE_APP_MAPS_API_KEY,
       };
 
-      console.log("VUE_APP_MAPS_API_KEY", process.env.VUE_APP_MAPS_API_KEY);
-
       this.timer = setTimeout(() => {
         axios
           .get(`https://maps.googleapis.com/maps/api/geocode/json`, { params })
